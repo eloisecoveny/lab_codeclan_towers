@@ -49,8 +49,11 @@ public class Hotel {
     }
 
 
-    public void makeBedroomBooking(Bedroom bedroom, Guest guest){
+    public void bookRoom(Bedroom bedroom, Guest guest, int nights){
         bedroom.add(guest);
+        Booking booking = new Booking(bedroom, nights);
+        this.bookings.add(booking);
+
     }
 
     public void makeConferenceRoomBooking(ConferenceRoom conferenceRoom, Guest guest){
@@ -83,5 +86,9 @@ public class Hotel {
         for(int i = 0; i < noGuests; i++){
             diningRoom.remove(guests.get(0));
         }
+    }
+
+    public ArrayList<Booking> getBookings(){
+        return this.bookings;
     }
 }
