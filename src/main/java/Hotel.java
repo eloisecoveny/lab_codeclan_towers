@@ -49,11 +49,14 @@ public class Hotel {
     }
 
 
-    public void bookRoom(Bedroom bedroom, Guest guest, int nights){
-        bedroom.add(guest);
-        Booking booking = new Booking(bedroom, nights);
-        this.bookings.add(booking);
-
+    public int bookRoom(Bedroom bedroom, Guest guest, int nights){
+        Booking booking = null;
+        if(bedroom.getGuests().size() == 0){
+            bedroom.add(guest);
+            booking = new Booking(bedroom, nights);
+            this.bookings.add(booking);
+        }
+        return booking.getBill();
     }
 
     public void makeConferenceRoomBooking(ConferenceRoom conferenceRoom, Guest guest){
@@ -90,5 +93,23 @@ public class Hotel {
 
     public ArrayList<Booking> getBookings(){
         return this.bookings;
+    }
+
+    public ArrayList<Bedroom> vacantRooms(){
+        ArrayList<Bedroom> vacantRooms = new ArrayList<Bedroom>();
+        for(int i = 0; i < this.bedrooms.size(); i++){
+            if(this.bedrooms.get(i).getGuests().size() == 0){
+                vacantRooms.add(bedrooms.get(i));
+            }
+        }
+        return vacantRooms;
+
+//        ArrayList<Bedroom> vacantRooms = new ArrayList<Bedroom>();
+//        for(Bedroom bedroom : this.bedrooms){
+//            if(bedroom.getGuests().size() == 0){
+//                vacantRooms.add(bedroom);
+//            }
+//        }
+//        return vacantRooms;
     }
 }

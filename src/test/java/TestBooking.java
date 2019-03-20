@@ -35,4 +35,10 @@ public class TestBooking {
     public void bookingHasNumberOfNights(){
         assertEquals(3, booking1.getNights());
     }
+
+    @Test
+    public void bookingCanCalculateBill(){
+        assertEquals(255, booking1.getBill());
+        assertEquals(50, booking2.getBill());
+    }
 }

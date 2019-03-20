@@ -142,4 +142,19 @@ public class TestHotel {
         assertEquals(2, hotel.countBookings());
     }
 
+    @Test
+    public void roomBookingReturnsBill(){
+        int bookingTotal = hotel.bookRoom(bedroom1, guest1, 3);
+        assertEquals(255, bookingTotal);
+    }
+
+    @Test
+    public void shouldReturnVacantRooms(){
+        hotel.addBedroom(bedroom1);
+        hotel.addBedroom(bedroom2);
+        hotel.bookRoom(bedroom1, guest1, 3);
+        assertEquals(1, bedroom1.countGuests());
+        assertEquals(1, hotel.vacantRooms().size());
+    }
+
 }
