@@ -1,3 +1,10 @@
+package hotelManagement;
+
+import customer.Guest;
+import rooms.Bedroom;
+import rooms.ConferenceRoom;
+import rooms.DiningRoom;
+
 import java.util.ArrayList;
 
 public class Hotel {
@@ -49,14 +56,14 @@ public class Hotel {
     }
 
 
-    public int bookRoom(Bedroom bedroom, Guest guest, int nights){
+    public void bookRoom(Bedroom bedroom, Guest guest, int nights){
         Booking booking = null;
-        if(bedroom.getGuests().size() == 0){
+        if(!bedroom.isOccupied() && bedroom.countGuests() <  bedroom.getCapacity()){
             bedroom.add(guest);
             booking = new Booking(bedroom, nights);
             this.bookings.add(booking);
         }
-        return booking.getBill();
+        bedroom.addBooking(booking);
     }
 
     public void makeConferenceRoomBooking(ConferenceRoom conferenceRoom, Guest guest){
@@ -72,6 +79,7 @@ public class Hotel {
         int noGuests = guests.size();
         for(int i = 0; i < noGuests; i++){
             bedroom.remove(guests.get(0));
+            bedroom.unoccupy();
         }
     }
 
@@ -80,6 +88,7 @@ public class Hotel {
         int noGuests = guests.size();
         for(int i = 0; i < noGuests; i++){
             conferenceRoom.remove(guests.get(0));
+            conferenceRoom.unoccupy();
         }
     }
 
@@ -88,6 +97,7 @@ public class Hotel {
         int noGuests = guests.size();
         for(int i = 0; i < noGuests; i++){
             diningRoom.remove(guests.get(0));
+            diningRoom.unoccupy();
         }
     }
 
@@ -104,8 +114,8 @@ public class Hotel {
         }
         return vacantRooms;
 
-//        ArrayList<Bedroom> vacantRooms = new ArrayList<Bedroom>();
-//        for(Bedroom bedroom : this.bedrooms){
+//        ArrayList<rooms.Bedroom> vacantRooms = new ArrayList<rooms.Bedroom>();
+//        for(rooms.Bedroom bedroom : this.bedrooms){
 //            if(bedroom.getGuests().size() == 0){
 //                vacantRooms.add(bedroom);
 //            }

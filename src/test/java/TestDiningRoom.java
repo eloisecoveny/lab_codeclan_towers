@@ -1,5 +1,7 @@
+import customer.Guest;
 import org.junit.Before;
 import org.junit.Test;
+import rooms.DiningRoom;
 
 import java.util.ArrayList;
 
@@ -20,7 +22,7 @@ public class TestDiningRoom {
 
     @Test
     public void roomHasAName(){
-        assertEquals("Bassey Room", diningRoom.getName());
+        assertEquals("Bassey Room", diningRoom.getIdentifier());
     }
 
     @Test
@@ -30,7 +32,7 @@ public class TestDiningRoom {
 
     @Test
     public void roomHasAPrice(){
-        assertEquals(150, diningRoom.getRate());
+        assertEquals(150, diningRoom.getPrice(), 0);
     }
 
     @Test

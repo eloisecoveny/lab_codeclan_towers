@@ -1,5 +1,8 @@
+import customer.Guest;
 import org.junit.Before;
 import org.junit.Test;
+import rooms.Bedroom;
+import rooms.BedroomType;
 
 import java.util.ArrayList;
 
@@ -13,14 +16,14 @@ public class TestBedroom {
 
     @Before
     public void setup(){
-        bedroom = new Bedroom(1, 2, "double", 85);
+        bedroom = new Bedroom("1", 2, BedroomType.DOUBLE, 85.00);
         guest1 = new Guest("Eloise", "eloisecoveny@gmail.com", false);
         guest2 = new Guest("Alice", "alice@gmail.com", false);
     }
 
     @Test
     public void getBedroomNumber(){
-        assertEquals(1, bedroom.getRoomNo());
+        assertEquals("1", bedroom.getIdentifier());
     }
 
     @Test
@@ -30,12 +33,12 @@ public class TestBedroom {
 
     @Test
     public void getType(){
-        assertEquals("double", bedroom.getType());
+        assertEquals(BedroomType.DOUBLE, bedroom.getType());
     }
 
     @Test
     public void getPrice(){
-        assertEquals(85, bedroom.getPrice());
+        assertEquals(85.00, bedroom.getPrice(), 0);
     }
 
     @Test

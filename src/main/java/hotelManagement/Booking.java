@@ -1,3 +1,7 @@
+package hotelManagement;
+
+import rooms.Bedroom;
+
 public class Booking {
 
     private Bedroom bedroom;
@@ -16,7 +20,7 @@ public class Booking {
         return this.nights;
     }
 
-    public int getBill(){
+    public double getBill(){
         return this.bedroom.getPrice() * this.nights;
     }
 }

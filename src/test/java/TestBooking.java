@@ -1,5 +1,9 @@
+import customer.Guest;
+import hotelManagement.Booking;
 import org.junit.Before;
 import org.junit.Test;
+import rooms.Bedroom;
+import rooms.BedroomType;
 
 import static org.junit.Assert.assertEquals;
 
@@ -15,8 +19,8 @@ public class TestBooking {
 
     @Before
     public void setup(){
-        bedroom1 = new Bedroom(1, 2, "double", 85);
-        bedroom2 = new Bedroom(2, 1, "single", 50);
+        bedroom1 = new Bedroom("1", 2, BedroomType.DOUBLE, 85.00);
+        bedroom2 = new Bedroom("2", 1, BedroomType.SINGLE, 50.00);
 
         guest1 = new Guest("Eloise", "eloisecoveny@gmail.com", false);
         guest2 = new Guest("Martin Heidegger", "heidegger@gmail.com", false);
@@ -38,7 +42,7 @@ public class TestBooking {
 
     @Test
     public void bookingCanCalculateBill(){
-        assertEquals(255, booking1.getBill());
-        assertEquals(50, booking2.getBill());
+        assertEquals(255, booking1.getBill(), 0);
+        assertEquals(50, booking2.getBill(), 0);
     }
 }
